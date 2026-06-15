@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#e50914">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="জয়া ভাইয়ের টিভি">
+<link rel="manifest" href="manifest.json">
+<title>জয়া ভাইয়ের লাইভ টিভি</title>
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+<style>
+body{
+margin:0;
+background:#111;
+color:white;
+font-family:Arial;
+}
+
+header{
+background:#e50914;
+padding:15px;
+text-align:center;
+font-size:22px;
+font-weight:bold;
+}
+
+.player{
+padding:10px;
+text-align:center;
+position:sticky;
+top:0;
+background:#111;
+z-index:10;
+}
+
+video{
+width:100%;
+max-height:500px;
+background:black;
+border-radius:10px;
+}
+
+button{
+background:#e50914;
+color:white;
+border:none;
+padding:10px 15px;
+margin:5px;
+border-radius:10px;
+cursor:pointer;
+}
+
+.container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+gap:10px;
+padding:10px;
+}
+
+.card{
+background:#222;
+padding:10px;
+border-radius:12px;
+text-align:center;
+cursor:pointer;
+transition:all 0.3s ease;
+}
+
+.card:hover{
+background:#444;
+transform:scale(1.02);
+}
+
+.card.active{
+background:#e50914;
+box-shadow:0 0 15px rgba(229,9,20,0.5);
+}
+
+.card.active:hover{
+background:#ff0a1a;
+}
+
+.card img{
+width:70px;
+height:70px;
+object-fit:contain;
+}
+
+h3{
+font-size:14px;
+margin:5px 0 0 0;
+}
+
+#popup{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.85);
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:99999;
+}
+
+#popup img{
+width:90%;
+max-width:350px;
+border-radius:12px;
+}
+
+.notification{
+position:fixed;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+background:#e50914;
+color:white;
+padding:10px 20px;
+border-radius:30px;
+font-size:14px;
+z-index:10000;
+animation:fadeOut 2s ease forwards;
+}
+
+@keyframes fadeOut{
+0%{opacity:1;}
+70%{opacity:1;}
+100%{opacity:0;visibility:hidden;}
+}
+
+/* ইন্সটল প্রম্পটের জন্য স্টাইল */
+#installBtn{
+position:fixed;
+bottom:80px;
+right:15px;
+background:#e50914;
+color:white;
+border:none;
+border-radius:50px;
+padding:12px 18px;
+font-size:14px;
+cursor:pointer;
+z-index:1000;
+box-shadow:0 2px 10px rgba(0,0,0,0.3);
+display:none;
+}
+</style>
+</head>
+<body>
+
+<div id="popup">
+<img src="https://raw.githubusercontent.com/emamulk63-design/Fifawarldcup2026/main/IMG_20260610_184322_866.jpg">
+</div>
+
+<header>📺 জয়া ভাইয়ের লাইভ টিভি</header>
+
+<div class="player">
+<video id="video" controls autoplay playsinline></video>
+<br>
+<button onclick="fullScreen()">⛶ Full Screen</button>
+<button onclick="expand()">🔄 Expand</button>
+</div>
+
+<div class="container">
+<!-- Joya TV Bangladesh -->
+<div class="card" data-url="https://1nyaler.streamhostingcdn.top/stream/23/index.m3u8" onclick="playChannel(this, 'https://1nyaler.streamhostingcdn.top/stream/23/index.m3u8')">
+<img src="https://raw.githubusercontent.com/emamulk63-design/Fifawarldcup2026/main/joyatvbangladesh.png">
+<h3>Joya TV Bangladesh</h3>
+</div>
+
+<!-- FIFA Worldcup by Joya -->
+<div class="card" data-url="https://1nyaler.streamhostingcdn.top/stream/32/index.m3u8" onclick="playChannel(this, 'https://1nyaler.streamhostingcdn.top/stream/32/index.m3u8')">
+<img src="https://raw.githubusercontent.com/emamulk63-design/Fifawarldcup2026/main/beinsports1.png">
+<h3>FIFA Worldcup by Joya</h3>
+</div>
+
+<!-- T SPORTS HD -->
+<div class="card" data-url="https://tvsen7.aynaott.com/tsports-hd/index.m3u8" onclick="playChannel(this, 'https://tvsen7.aynaott.com/tsports-hd/index.m3u8')">
+<img src="https://raw.githubusercontent.com/emamulk63-design/Fifawarldcup2026/main/tsports.png">
+<h3>T Sports HD</h3>
+</div>
+
+<!-- T SPORTS 720 -->
+<div class="card" data-url="https://tvsen7.aynaott.com/tsports-hd/index.m3u8" onclick="playChannel(this, 'https://tvsen7.aynaott.com/tsports-hd/index.m3u8')">
+<img src="https://raw.githubusercontent.com/emamulk63-design/Fifawarldcup2026/main/tsports.png">
+<h3>T Sports 720</h3>
+</div>
+
+<!-- T SPORTS 1080 -->
+<div class="card" data-url="https://tvsen7.aynaott.com/tsportsfhd/index.m3u8" onclick="playChannel(this, 'https://tvsen7.aynaott.com/tsportsfhd/index.m3u8')">
+<img src="https://raw.githubusercontent.com/emamulk63-design/Fifawarldcup2026/main/tsports.png">
+<h3>T Sports 1080</h3>
+</div>
+
+<!-- SOMOY FIFA (AutoPlay) -->
+<div class="card" data-url="https://owrcovcrpy.gpcdn.net/bpk-tv/1702/output/index.m3u8" onclick="playChannel(this, 'https://owrcovcrpy.gpcdn.net/bpk-tv/1702/output/index.m3u8')">
+<img src="https://raw.githubusercontent.com/emamulk63-design/Fifawarldcup2026/main/somoytvfifa.jpg">
+<h3>Somoy TV FIFA</h3>
+</div>
+
+<!-- অন্যান্য চ্যানেল... (আগের মতোই) -->
+<div class="card" data-url="https://tvsen6.aynaott.com/somoytv/index.m3u8" onclick="playChannel(this, 'https://tvsen6.aynaott.com/somoytv/index.m3u8')">
+<img src="https://raw.githubusercontent.com/emamulk63-design/Fifawarldcup2026/main/somoytv.png">
+<h3>Somoy TV</h3>
+</div>
+
+<div class="card" data-url="https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/index.m3u8" onclick="playChannel(this, 'https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/index.m3u8')">
+<img src="https://raw.githubusercontent.com/emamulk63-design/Fifawarldcup2026/main/Btv.png">
+<h3>BTV</h3>
+</div>
+
+<div class="card" data-url="https://tvsen7.aynaott.com/sspts1/index.m3u8" onclick="playChannel(this, 'https://tvsen7.aynaott.com/sspts1/index.m3u8')">
+<img src="https://raw.githubusercontent.com/emamulk63-design/Fifawarldcup2026/main/STARsports.png">
+<h3>STAR Sports</h3>
+</div>
+
+<div class="card" data-url="https://amg26268-amg26268c14-freelivesports-emea-10267.playouts.now.amagi.tv/ts-us-e2-n2/playlist/amg26268-sportsstudio-tycsports-freelivesportsemea/playlist.m3u8" onclick="playChannel(this, 'https://amg26268-amg26268c14-freelivesports-emea-10267.playouts.now.amagi.tv/ts-us-e2-n2/playlist/amg26268-sportsstudio-tycsports-freelivesportsemea/playlist.m3u8')">
+<img src="https://raw.githubusercontent.com/emamulk63-design/Fifawarldcup2026/main/foodballworld.jpg">
+<h3>Football World</h3>
+</div>
+
+<div class="card" data-url="https://stream.snexus.co/live/SHARQ_GAME_TV/main_stream.m3u8" onclick="playChannel(this, 'https://stream.snexus.co/live/SHARQ_GAME_TV/main_stream.m3u8')">
+<img src="https://raw.githubusercontent.com/emamulk63-design/Fifawarldcup2026/main/livesports.png">
+<h3>Live Sports</h3>
+</div>
+
+<div class="card" data-url="https://edge2.roarzone.net:8447/roarzone/edge5/tsn-2/index.m3u8?token=edda3f5275ebf19242e11559709d482901204197-08e319ba2232f1f8078b729fb018247e-1781091325-1781080525" onclick="playChannel(this, 'https://edge2.roarzone.net:8447/roarzone/edge5/tsn-2/index.m3u8?token=edda3f5275ebf19242e11559709d482901204197-08e319ba2232f1f8078b729fb018247e-1781091325-1781080525')">
+<img src="https://raw.githubusercontent.com/emamulk63-design/Fifawarldcup2026/main/tnt-sports-logo-png_seeklogo-486966.png">
+<h3>TNT Sports</h3>
+</div>
+
+<div class="card" data-url="https://dzkyvlfyge.erbvr.com/PeaceTvBangla/tracks-v2a1/mono.m3u8" onclick="playChannel(this, 'https://dzkyvlfyge.erbvr.com/PeaceTvBangla/tracks-v2a1/mono.m3u8')">
+<img src="https://raw.githubusercontent.com/emamulk63-design/Fifawarldcup2026/main/peacetv.png">
+<h3>Peace TV</h3>
+</div>
+</div>
+
+<button id="installBtn">📲 অ্যাপ ইন্সটল করুন</button>
+
+<script>
+let video=document.getElementById("video");
+let hls;
+let currentActiveCard=null;
+let deferredPrompt;
+
+// PWA Install Prompt
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  document.getElementById('installBtn').style.display = 'block';
+});
+
+document.getElementById('installBtn').addEventListener('click', () => {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(() => {
+      deferredPrompt = null;
+      document.getElementById('installBtn').style.display = 'none';
+    });
+  }
+});
+
+function showNotification(channelName){
+let oldNoti=document.querySelector('.notification');
+if(oldNoti) oldNoti.remove();
+let noti=document.createElement('div');
+noti.className='notification';
+noti.innerText='▶ এখন চলছে: '+channelName;
+document.body.appendChild(noti);
+setTimeout(()=>{
+if(noti) noti.remove();
+},2000);
+}
+
+function playChannel(element, url){
+if(currentActiveCard){
+currentActiveCard.classList.remove('active');
+}
+element.classList.add('active');
+currentActiveCard=element;
+let channelName=element.querySelector('h3').innerText;
+showNotification(channelName);
+if(hls){
+hls.destroy();
+}
+if(Hls.isSupported()){
+hls=new Hls();
+hls.loadSource(url);
+hls.attachMedia(video);
+hls.on(Hls.Events.MANIFEST_PARSED,function(){
+video.play();
+});
+}else{
+video.src=url;
+video.play();
+}
+}
+
+window.onload=function(){
+setTimeout(()=>{
+document.getElementById("popup").style.display="none";
+},2000);
+let allCards=document.querySelectorAll('.card');
+let somoyFifaCard=allCards[5];
+if(somoyFifaCard){
+let somoyFifaUrl=somoyFifaCard.getAttribute('data-url');
+playChannel(somoyFifaCard, somoyFifaUrl);
+}
+}
+
+function fullScreen(){
+if(video.requestFullscreen){
+video.requestFullscreen();
+}
+else if(video.webkitEnterFullscreen){
+video.webkitEnterFullscreen();
+}
+}
+
+function expand(){
+let p=document.querySelector(".player");
+if(p.style.position!="fixed"){
+p.style.position="fixed";
+p.style.top="0";
+p.style.left="0";
+p.style.width="100vw";
+p.style.height="100vh";
+p.style.background="black";
+p.style.zIndex="99999";
+}else{
+p.style.position="sticky";
+}
+}
+
+// Service Worker Registration
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js').then(() => {
+    console.log('Service Worker Registered');
+  }).catch(err => {
+    console.log('SW Error:', err);
+  });
+}
+</script>
+
+</body>
+</html>
