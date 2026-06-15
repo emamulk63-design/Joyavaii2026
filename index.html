@@ -10,10 +10,20 @@
 <link rel="manifest" href="/Joyavaii2026/manifest.json">
 <title>জয়া ভাইয়ের লাইভ টিভি</title>
 
+<!-- OneSignal SDK -->
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "45d820d1-6a86-43b0-aaf6-57f8d10be003",
+    });
+  });
+</script>
+
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
 <style>
-/* ডার্ক মোড ভেরিয়েবল */
 :root {
   --bg-color: #111;
   --text-color: white;
@@ -187,7 +197,6 @@ box-shadow:0 2px 10px rgba(0,0,0,0.3);
 display:none;
 }
 
-/* নোটিফিকেশন সেটিংস প্যানেল - সবসময় দেখাবে */
 .noti-panel {
   background: #e50914;
   padding: 15px;
@@ -291,9 +300,8 @@ input:checked + .slider:before {
 <button onclick="expand()">🔄 Expand</button>
 </div>
 
-<!-- নোটিফিকেশন সেটিংস প্যানেল - এখন দেখাবেই -->
 <div class="noti-panel">
-  <span>🔔 ম্যাচ শুরু হলে নোটিফিকেশন পান</span>
+  <span>🔔 সবার জন্য ম্যাচ নোটিফিকেশন</span>
   <label class="switch">
     <input type="checkbox" id="notiToggle" onchange="toggleNotification()">
     <span class="slider"></span>
@@ -389,7 +397,6 @@ let hls;
 let currentActiveCard=null;
 let deferredPrompt;
 
-// থিম টগল ফাংশন
 function toggleTheme() {
   let html = document.documentElement;
   let currentTheme = html.getAttribute('data-theme');
@@ -406,14 +413,12 @@ function toggleTheme() {
   }
 }
 
-// সেভ করা থিম লোড
 let savedTheme = localStorage.getItem('theme');
 if (savedTheme === 'light') {
   document.documentElement.setAttribute('data-theme', 'light');
   document.querySelector('.theme-toggle').innerHTML = '☀️ লাইট';
 }
 
-// নোটিফিকেশন পারমিশন চেক
 let notiEnabled = false;
 
 function toggleNotification() {
@@ -461,13 +466,10 @@ function sendTestNotification() {
   }
 }
 
-// ম্যাচ শুরু হওয়ার সিমুলেশন
 let matchActive = false;
 setInterval(() => {
   let now = new Date();
   let hour = now.getHours();
-  
-  // সন্ধ্যা 6টা থেকে রাত 11টা পর্যন্ত ম্যাচ চলছে
   let isMatchTime = (hour >= 18 && hour < 23);
   
   if (isMatchTime && !matchActive) {
