@@ -62,6 +62,7 @@ flex-wrap: wrap;
   border-radius: 20px;
   cursor: pointer;
   font-size: 16px;
+  color: white;
 }
 
 .player{
@@ -73,7 +74,6 @@ background: var(--bg-color);
 z-index:10;
 }
 
-/* ভিডিও আগের সাইজে ফিরিয়ে দেওয়া হলো */
 video{
 width:100%;
 max-height:500px;
@@ -187,9 +187,9 @@ box-shadow:0 2px 10px rgba(0,0,0,0.3);
 display:none;
 }
 
-/* নোটিফিকেশন সেটিংস প্যানেল */
+/* নোটিফিকেশন সেটিংস প্যানেল - সবসময় দেখাবে */
 .noti-panel {
-  background: var(--card-bg);
+  background: #e50914;
   padding: 15px;
   margin: 10px;
   border-radius: 12px;
@@ -198,12 +198,18 @@ display:none;
   align-items: center;
   flex-wrap: wrap;
   gap: 10px;
+  color: white;
+  font-weight: bold;
 }
 
 .noti-panel button {
-  background: #e50914;
+  background: white;
+  color: #e50914;
+  border: none;
   padding: 8px 15px;
-  font-size: 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 .match-alert {
@@ -259,7 +265,7 @@ display:none;
 }
 
 input:checked + .slider {
-  background-color: #e50914;
+  background-color: #2196F3;
 }
 
 input:checked + .slider:before {
@@ -285,14 +291,14 @@ input:checked + .slider:before {
 <button onclick="expand()">🔄 Expand</button>
 </div>
 
-<!-- নোটিফিকেশন সেটিংস প্যানেল -->
+<!-- নোটিফিকেশন সেটিংস প্যানেল - এখন দেখাবেই -->
 <div class="noti-panel">
   <span>🔔 ম্যাচ শুরু হলে নোটিফিকেশন পান</span>
   <label class="switch">
     <input type="checkbox" id="notiToggle" onchange="toggleNotification()">
     <span class="slider"></span>
   </label>
-  <button onclick="sendTestNotification()">🔔 টেস্ট নোটিফিকেশন</button>
+  <button onclick="sendTestNotification()">📢 টেস্ট নোটিফিকেশন</button>
 </div>
 
 <div class="container">
@@ -451,7 +457,7 @@ function sendTestNotification() {
   if (notiEnabled) {
     sendPushNotification('🧪 টেস্ট নোটিফিকেশন', 'আপনার নোটিফিকেশন সঠিকভাবে কাজ করছে!');
   } else {
-    showNotificationMsg('🔔 নোটিফিকেশন অন করুন প্রথমে');
+    showNotificationMsg('🔔 প্রথমে সুইচ অন করে নোটিফিকেশন চালু করুন');
   }
 }
 
@@ -477,7 +483,10 @@ function showMatchAlert() {
   let alertDiv = document.createElement('div');
   alertDiv.className = 'match-alert';
   alertDiv.innerHTML = '⚽ লাইভ ম্যাচ চলছে! এখনই দেখুন ⚽';
-  document.querySelector('.player').insertAdjacentElement('afterend', alertDiv);
+  let playerDiv = document.querySelector('.player');
+  if(playerDiv) {
+    playerDiv.insertAdjacentElement('afterend', alertDiv);
+  }
   setTimeout(() => {
     if(alertDiv) alertDiv.remove();
   }, 10000);
@@ -549,7 +558,8 @@ playChannel(somoyFifaCard, somoyFifaUrl);
 let savedNoti = localStorage.getItem('notiEnabled');
 if (savedNoti === 'true') {
   notiEnabled = true;
-  document.getElementById('notiToggle').checked = true;
+  let notiToggle = document.getElementById('notiToggle');
+  if(notiToggle) notiToggle.checked = true;
 }
 }
 
