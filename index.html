@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="জয়া ভাইয়ের টিভি">
-<link rel="manifest" href="manifest.json">
+<link rel="manifest" href="/Joyavaii2026/manifest.json">
 <title>জয়া ভাইয়ের লাইভ টিভি</title>
 
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
@@ -134,7 +134,6 @@ animation:fadeOut 2s ease forwards;
 100%{opacity:0;visibility:hidden;}
 }
 
-/* ইন্সটল প্রম্পটের জন্য স্টাইল */
 #installBtn{
 position:fixed;
 bottom:80px;
@@ -204,37 +203,43 @@ display:none;
 <h3>Somoy TV FIFA</h3>
 </div>
 
-<!-- অন্যান্য চ্যানেল... (আগের মতোই) -->
+<!-- SOMOY TV -->
 <div class="card" data-url="https://tvsen6.aynaott.com/somoytv/index.m3u8" onclick="playChannel(this, 'https://tvsen6.aynaott.com/somoytv/index.m3u8')">
 <img src="https://raw.githubusercontent.com/emamulk63-design/Fifawarldcup2026/main/somoytv.png">
 <h3>Somoy TV</h3>
 </div>
 
+<!-- BTV -->
 <div class="card" data-url="https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/index.m3u8" onclick="playChannel(this, 'https://owrcovcrpy.gpcdn.net/bpk-tv/1709/output/index.m3u8')">
 <img src="https://raw.githubusercontent.com/emamulk63-design/Fifawarldcup2026/main/Btv.png">
 <h3>BTV</h3>
 </div>
 
+<!-- STAR SPORTS -->
 <div class="card" data-url="https://tvsen7.aynaott.com/sspts1/index.m3u8" onclick="playChannel(this, 'https://tvsen7.aynaott.com/sspts1/index.m3u8')">
 <img src="https://raw.githubusercontent.com/emamulk63-design/Fifawarldcup2026/main/STARsports.png">
 <h3>STAR Sports</h3>
 </div>
 
+<!-- Football World -->
 <div class="card" data-url="https://amg26268-amg26268c14-freelivesports-emea-10267.playouts.now.amagi.tv/ts-us-e2-n2/playlist/amg26268-sportsstudio-tycsports-freelivesportsemea/playlist.m3u8" onclick="playChannel(this, 'https://amg26268-amg26268c14-freelivesports-emea-10267.playouts.now.amagi.tv/ts-us-e2-n2/playlist/amg26268-sportsstudio-tycsports-freelivesportsemea/playlist.m3u8')">
 <img src="https://raw.githubusercontent.com/emamulk63-design/Fifawarldcup2026/main/foodballworld.jpg">
 <h3>Football World</h3>
 </div>
 
+<!-- Live Sports -->
 <div class="card" data-url="https://stream.snexus.co/live/SHARQ_GAME_TV/main_stream.m3u8" onclick="playChannel(this, 'https://stream.snexus.co/live/SHARQ_GAME_TV/main_stream.m3u8')">
 <img src="https://raw.githubusercontent.com/emamulk63-design/Fifawarldcup2026/main/livesports.png">
 <h3>Live Sports</h3>
 </div>
 
+<!-- TNT Sports -->
 <div class="card" data-url="https://edge2.roarzone.net:8447/roarzone/edge5/tsn-2/index.m3u8?token=edda3f5275ebf19242e11559709d482901204197-08e319ba2232f1f8078b729fb018247e-1781091325-1781080525" onclick="playChannel(this, 'https://edge2.roarzone.net:8447/roarzone/edge5/tsn-2/index.m3u8?token=edda3f5275ebf19242e11559709d482901204197-08e319ba2232f1f8078b729fb018247e-1781091325-1781080525')">
 <img src="https://raw.githubusercontent.com/emamulk63-design/Fifawarldcup2026/main/tnt-sports-logo-png_seeklogo-486966.png">
 <h3>TNT Sports</h3>
 </div>
 
+<!-- Peace TV -->
 <div class="card" data-url="https://dzkyvlfyge.erbvr.com/PeaceTvBangla/tracks-v2a1/mono.m3u8" onclick="playChannel(this, 'https://dzkyvlfyge.erbvr.com/PeaceTvBangla/tracks-v2a1/mono.m3u8')">
 <img src="https://raw.githubusercontent.com/emamulk63-design/Fifawarldcup2026/main/peacetv.png">
 <h3>Peace TV</h3>
@@ -249,7 +254,6 @@ let hls;
 let currentActiveCard=null;
 let deferredPrompt;
 
-// PWA Install Prompt
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   deferredPrompt = e;
@@ -338,9 +342,8 @@ p.style.position="sticky";
 }
 }
 
-// Service Worker Registration
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js').then(() => {
+  navigator.serviceWorker.register('/Joyavaii2026/sw.js').then(() => {
     console.log('Service Worker Registered');
   }).catch(err => {
     console.log('SW Error:', err);
