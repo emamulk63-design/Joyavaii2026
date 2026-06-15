@@ -1,0 +1,16 @@
+{
+  "name": "জয়া ভাইয়ের লাইভ টিভি",
+  "short_name": "জয়া টিভি",
+  "description": "জয়া ভাইয়ের লাইভ টিভি স্ট্রিমিং অ্যাপ",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#e50914",
+  "background_color": "#111111",
+  "icons": [
+    {
+      "src": "https://raw.githubusercontent.com/emamulk63-design/Fifawarldcup2026/main/joyatvbangladesh.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
