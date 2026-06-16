@@ -3,11 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<!-- Cache Control Meta Tags -->
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <meta name="theme-color" content="#e50914">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="জয়া ভাইয়ের টিভি">
-<link rel="manifest" href="/Joyavaii2026/manifest.json">
+<link rel="manifest" href="/Joyavaii2026/manifest.json?v=2">
 <title>জয়া ভাইয়ের লাইভ টিভি</title>
 
 <!-- OneSignal SDK -->
@@ -24,6 +28,7 @@
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
 <style>
+/* আপনার পুরানো CSS ঠিক একই থাকবে */
 :root {
   --bg-color: #111;
   --text-color: white;
@@ -248,7 +253,7 @@ display:none;
 <h3>FIFA Worldcup by Joya</h3>
 </div>
 
-<!-- Joya TV Sports (নতুন লোগো সহ) -->
+<!-- Joya TV Sports -->
 <div class="card" data-url="https://raw.githubusercontent.com/falconcasthoster/promo/refs/heads/main/nolink/master.m3u8" onclick="playChannel(this, 'https://raw.githubusercontent.com/falconcasthoster/promo/refs/heads/main/nolink/master.m3u8')">
 <img class="logo-large" src="https://raw.githubusercontent.com/emamulk63-design/Fifawarldcup2026/main/joyasportsmax.png">
 <h3>Joya TV Sports</h3>
@@ -440,7 +445,7 @@ p.style.position="sticky";
 }
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/Joyavaii2026/sw.js').then(() => {
+  navigator.serviceWorker.register('/Joyavaii2026/sw.js?v=2').then(() => {
     console.log('Service Worker Registered');
   }).catch(err => {
     console.log('SW Error:', err);
@@ -449,4 +454,4 @@ if ('serviceWorker' in navigator) {
 </script>
 
 </body>
-</html>
+  </html>
