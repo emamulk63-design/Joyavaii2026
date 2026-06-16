@@ -137,6 +137,13 @@ height:70px;
 object-fit:contain;
 }
 
+/* Joya TV Sports এর জন্য বড় লোগো */
+.card img.logo-large {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+}
+
 h3{
 font-size:14px;
 margin:5px 0 0 0;
@@ -196,90 +203,6 @@ z-index:1000;
 box-shadow:0 2px 10px rgba(0,0,0,0.3);
 display:none;
 }
-
-.noti-panel {
-  background: #e50914;
-  padding: 15px;
-  margin: 10px;
-  border-radius: 12px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  color: white;
-  font-weight: bold;
-}
-
-.noti-panel button {
-  background: white;
-  color: #e50914;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.match-alert {
-  background: #e50914;
-  color: white;
-  padding: 12px;
-  margin: 10px;
-  border-radius: 10px;
-  text-align: center;
-  animation: blink 1s ease infinite;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.6; }
-}
-
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 50px;
-  height: 24px;
-}
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  transition: 0.3s;
-  border-radius: 24px;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 18px;
-  width: 18px;
-  left: 3px;
-  bottom: 3px;
-  background-color: white;
-  transition: 0.3s;
-  border-radius: 50%;
-}
-
-input:checked + .slider {
-  background-color: #2196F3;
-}
-
-input:checked + .slider:before {
-  transform: translateX(26px);
-}
 </style>
 </head>
 <body>
@@ -300,20 +223,23 @@ input:checked + .slider:before {
 <button onclick="expand()">🔄 Expand</button>
 </div>
 
-<div class="noti-panel">
-  <span>🔔 সবার জন্য ম্যাচ নোটিফিকেশন</span>
-  <label class="switch">
-    <input type="checkbox" id="notiToggle" onchange="toggleNotification()">
-    <span class="slider"></span>
-  </label>
-  <button onclick="sendTestNotification()">📢 টেস্ট নোটিফিকেশন</button>
-</div>
-
 <div class="container">
 <!-- Joya TV Bangladesh -->
 <div class="card" data-url="https://1nyaler.streamhostingcdn.top/stream/23/index.m3u8" onclick="playChannel(this, 'https://1nyaler.streamhostingcdn.top/stream/23/index.m3u8')">
 <img src="https://raw.githubusercontent.com/emamulk63-design/Fifawarldcup2026/main/joyatvbangladesh.png">
 <h3>Joya TV Bangladesh</h3>
+</div>
+
+<!-- Somoy TV -->
+<div class="card" data-url="https://live.thebosstv.com:30443/dwlive/Somoy-TV/chunks.m3u8" onclick="playChannel(this, 'https://live.thebosstv.com:30443/dwlive/Somoy-TV/chunks.m3u8')">
+<img src="https://raw.githubusercontent.com/emamulk63-design/Fifawarldcup2026/main/somoytv.png">
+<h3>Somoy TV</h3>
+</div>
+
+<!-- T Sports HD -->
+<div class="card" data-url="https://1nyaler.streamhostingcdn.top/stream/106/index.m3u8" onclick="playChannel(this, 'https://1nyaler.streamhostingcdn.top/stream/106/index.m3u8')">
+<img src="https://raw.githubusercontent.com/emamulk63-design/Fifawarldcup2026/main/tsports.png">
+<h3>T Sports HD</h3>
 </div>
 
 <!-- FIFA Worldcup by Joya -->
@@ -322,34 +248,22 @@ input:checked + .slider:before {
 <h3>FIFA Worldcup by Joya</h3>
 </div>
 
-<!-- T SPORTS HD -->
-<div class="card" data-url="https://tvsen7.aynaott.com/tsports-hd/index.m3u8" onclick="playChannel(this, 'https://tvsen7.aynaott.com/tsports-hd/index.m3u8')">
-<img src="https://raw.githubusercontent.com/emamulk63-design/Fifawarldcup2026/main/tsports.png">
-<h3>T Sports HD</h3>
+<!-- Joya TV Sports (বড় লোগো) -->
+<div class="card" data-url="https://raw.githubusercontent.com/falconcasthoster/promo/refs/heads/main/nolink/master.m3u8" onclick="playChannel(this, 'https://raw.githubusercontent.com/falconcasthoster/promo/refs/heads/main/nolink/master.m3u8')">
+<img class="logo-large" src="https://raw.githubusercontent.com/emamulk63-design/Fifawarldcup2026/main/joyatvdports.png">
+<h3>Joya TV Sports</h3>
 </div>
 
-<!-- T SPORTS 720 -->
-<div class="card" data-url="https://tvsen7.aynaott.com/tsports-hd/index.m3u8" onclick="playChannel(this, 'https://tvsen7.aynaott.com/tsports-hd/index.m3u8')">
-<img src="https://raw.githubusercontent.com/emamulk63-design/Fifawarldcup2026/main/tsports.png">
-<h3>T Sports 720</h3>
+<!-- P TV Pakistan -->
+<div class="card" data-url="https://crichd.johirxofficial.workers.dev/live/ptvpk.m3u8" onclick="playChannel(this, 'https://crichd.johirxofficial.workers.dev/live/ptvpk.m3u8')">
+<img src="https://raw.githubusercontent.com/emamulk63-design/Fifawarldcup2026/main/PTV_Sports.png">
+<h3>P TV Pakistan</h3>
 </div>
 
-<!-- T SPORTS 1080 -->
-<div class="card" data-url="https://tvsen7.aynaott.com/tsportsfhd/index.m3u8" onclick="playChannel(this, 'https://tvsen7.aynaott.com/tsportsfhd/index.m3u8')">
-<img src="https://raw.githubusercontent.com/emamulk63-design/Fifawarldcup2026/main/tsports.png">
-<h3>T Sports 1080</h3>
-</div>
-
-<!-- SOMOY FIFA (AutoPlay) -->
+<!-- Somoy TV FIFA -->
 <div class="card" data-url="https://owrcovcrpy.gpcdn.net/bpk-tv/1702/output/index.m3u8" onclick="playChannel(this, 'https://owrcovcrpy.gpcdn.net/bpk-tv/1702/output/index.m3u8')">
 <img src="https://raw.githubusercontent.com/emamulk63-design/Fifawarldcup2026/main/somoytvfifa.jpg">
 <h3>Somoy TV FIFA</h3>
-</div>
-
-<!-- SOMOY TV -->
-<div class="card" data-url="https://tvsen6.aynaott.com/somoytv/index.m3u8" onclick="playChannel(this, 'https://tvsen6.aynaott.com/somoytv/index.m3u8')">
-<img src="https://raw.githubusercontent.com/emamulk63-design/Fifawarldcup2026/main/somoytv.png">
-<h3>Somoy TV</h3>
 </div>
 
 <!-- BTV -->
@@ -358,7 +272,25 @@ input:checked + .slider:before {
 <h3>BTV</h3>
 </div>
 
-<!-- STAR SPORTS -->
+<!-- Jamuna TV -->
+<div class="card" data-url="https://owrcovcrpy.gpcdn.net/bpk-tv/1701/output/1701-audio_113312_eng=113200-video=1692000.m3u8" onclick="playChannel(this, 'https://owrcovcrpy.gpcdn.net/bpk-tv/1701/output/1701-audio_113312_eng=113200-video=1692000.m3u8')">
+<img src="https://raw.githubusercontent.com/emamulk63-design/Fifawarldcup2026/main/jumunatv.png">
+<h3>Jamuna TV</h3>
+</div>
+
+<!-- Channel 24 -->
+<div class="card" data-url="https://owrcovcrpy.gpcdn.net/bpk-tv/1703/output/index.m3u8" onclick="playChannel(this, 'https://owrcovcrpy.gpcdn.net/bpk-tv/1703/output/index.m3u8')">
+<img src="https://raw.githubusercontent.com/emamulk63-design/Fifawarldcup2026/main/chanel24.png">
+<h3>Channel 24</h3>
+</div>
+
+<!-- Bein Sports -->
+<div class="card" data-url="https://no-red.pages.dev/liveop2.m3u8" onclick="playChannel(this, 'https://no-red.pages.dev/liveop2.m3u8')">
+<img src="https://raw.githubusercontent.com/emamulk63-design/Fifawarldcup2026/main/beinsports.png">
+<h3>Bein Sports</h3>
+</div>
+
+<!-- STAR Sports -->
 <div class="card" data-url="https://tvsen7.aynaott.com/sspts1/index.m3u8" onclick="playChannel(this, 'https://tvsen7.aynaott.com/sspts1/index.m3u8')">
 <img src="https://raw.githubusercontent.com/emamulk63-design/Fifawarldcup2026/main/STARsports.png">
 <h3>STAR Sports</h3>
@@ -419,81 +351,6 @@ if (savedTheme === 'light') {
   document.querySelector('.theme-toggle').innerHTML = '☀️ লাইট';
 }
 
-let notiEnabled = false;
-
-function toggleNotification() {
-  if (!notiEnabled) {
-    if ('Notification' in window) {
-      Notification.requestPermission().then(permission => {
-        if (permission === 'granted') {
-          notiEnabled = true;
-          document.getElementById('notiToggle').checked = true;
-          localStorage.setItem('notiEnabled', 'true');
-          showNotificationMsg('✅ নোটিফিকেশন অন করা হয়েছে!');
-        } else {
-          document.getElementById('notiToggle').checked = false;
-          showNotificationMsg('❌ নোটিফিকেশন পারমিশন দেওয়া হয়নি');
-        }
-      });
-    } else {
-      alert('এই ব্রাউজার নোটিফিকেশন সাপোর্ট করে না');
-      document.getElementById('notiToggle').checked = false;
-    }
-  } else {
-    notiEnabled = false;
-    document.getElementById('notiToggle').checked = false;
-    localStorage.setItem('notiEnabled', 'false');
-    showNotificationMsg('🔕 নোটিফিকেশন বন্ধ করা হয়েছে');
-  }
-}
-
-function sendPushNotification(title, body) {
-  if (notiEnabled && 'Notification' in window && Notification.permission === 'granted') {
-    new Notification(title, {
-      body: body,
-      icon: 'https://raw.githubusercontent.com/emamulk63-design/Fifawarldcup2026/main/joyatvbangladesh.png',
-      badge: 'https://raw.githubusercontent.com/emamulk63-design/Fifawarldcup2026/main/joyatvbangladesh.png',
-      vibrate: [200, 100, 200]
-    });
-  }
-}
-
-function sendTestNotification() {
-  if (notiEnabled) {
-    sendPushNotification('🧪 টেস্ট নোটিফিকেশন', 'আপনার নোটিফিকেশন সঠিকভাবে কাজ করছে!');
-  } else {
-    showNotificationMsg('🔔 প্রথমে সুইচ অন করে নোটিফিকেশন চালু করুন');
-  }
-}
-
-let matchActive = false;
-setInterval(() => {
-  let now = new Date();
-  let hour = now.getHours();
-  let isMatchTime = (hour >= 18 && hour < 23);
-  
-  if (isMatchTime && !matchActive) {
-    matchActive = true;
-    sendPushNotification('⚽ লাইভ ম্যাচ শুরু!', 'ফুটবল ম্যাচ লাইভ চলছে। এখনই দেখুন!');
-    showMatchAlert();
-  } else if (!isMatchTime && matchActive) {
-    matchActive = false;
-  }
-}, 30000);
-
-function showMatchAlert() {
-  let alertDiv = document.createElement('div');
-  alertDiv.className = 'match-alert';
-  alertDiv.innerHTML = '⚽ লাইভ ম্যাচ চলছে! এখনই দেখুন ⚽';
-  let playerDiv = document.querySelector('.player');
-  if(playerDiv) {
-    playerDiv.insertAdjacentElement('afterend', alertDiv);
-  }
-  setTimeout(() => {
-    if(alertDiv) alertDiv.remove();
-  }, 10000);
-}
-
 function showNotificationMsg(msg){
 let oldNoti=document.querySelector('.notification');
 if(oldNoti) oldNoti.remove();
@@ -551,17 +408,10 @@ setTimeout(()=>{
 document.getElementById("popup").style.display="none";
 },2000);
 let allCards=document.querySelectorAll('.card');
-let somoyFifaCard=allCards[5];
+let somoyFifaCard=allCards[6];
 if(somoyFifaCard){
 let somoyFifaUrl=somoyFifaCard.getAttribute('data-url');
 playChannel(somoyFifaCard, somoyFifaUrl);
-}
-
-let savedNoti = localStorage.getItem('notiEnabled');
-if (savedNoti === 'true') {
-  notiEnabled = true;
-  let notiToggle = document.getElementById('notiToggle');
-  if(notiToggle) notiToggle.checked = true;
 }
 }
 
